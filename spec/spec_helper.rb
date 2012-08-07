@@ -1,5 +1,5 @@
 require 'active_record'
-
+require 'pry'
 require 'logger'
 
 plugin_test_dir = File.dirname(__FILE__)
@@ -14,6 +14,8 @@ load(File.join(plugin_test_dir, "db", "schema.rb"))
 require File.join(plugin_test_dir, '..', 'init')
 require File.join(plugin_test_dir, '..', 'lib', 'generators', 'acts_as_commentable_with_threading_migration', 'templates', 'comment')
 
+ActiveRecord::Base.send(:include, Acts::CommentableWithThreading)
+
 class User < ActiveRecord::Base
   has_many :comments
 end
@@ -21,5 +23,3 @@ end
 class Commentable < ActiveRecord::Base
   acts_as_commentable
 end
-
-ActiveRecord::Base.send(:include, Acts::CommentableWithThreading)

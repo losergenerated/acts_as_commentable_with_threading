@@ -17,7 +17,6 @@ describe "A class that is commentable" do
         @comment = Comment.create!(:user => @user, :commentable => @commentable, :body => 'blargh')
 
         @other_comment = Comment.create!(:user => @user, :commentable => @other_commentable, :body => 'hello')
-
         @comments = Commentable.find_comments_for(@commentable)
       end
 
